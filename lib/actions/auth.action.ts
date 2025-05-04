@@ -55,19 +55,20 @@ export async function signIn(params: SignInParams) {
             return { success: false, message: 'User not found. Please sign up.' };
         }
 
-        const idToken = await auth.createCustomToken(userRecord.uid);
+        // const idToken = await auth.createCustomToken(userRecord.uid);
         await setSessionCookie(idToken);
 
-        return { success: true, message: 'Sign in successful' };
+        // return { success: true, message: 'Sign in successful' };
     } catch (e: any) {
-        console.error('Error signing in:', e);
+        console.log("");
+        // console.error('Error signing in:', e);
         return { success: false, message: 'Failed to sign in' };
     }
 }
 
 export async function getCuurentUser(): Promise<User | null> {
     const cookieStore = await cookies();
-    const sessionCookie = cookieStore.get("session")?.value || null;
+    const sessionCookie = cookieStore.get("session")?.value;
 
     if (!sessionCookie) {
         return null;
@@ -75,7 +76,7 @@ export async function getCuurentUser(): Promise<User | null> {
 
     try {
         const decodedClaims = await auth.verifySessionCookie(sessionCookie, true);
-        const userRecord = await db.collection('users').doc(decodedClaims.uid).get();
+        const userRecord = await db.collection("users").doc(decodedClaims.uid).get();
 
         if (!userRecord.exists) {
             return null;
@@ -84,12 +85,13 @@ export async function getCuurentUser(): Promise<User | null> {
         return {
             ...userRecord.data(),
             id: userRecord.id,
-            name: userRecord.data()?.name || null,
-            email: userRecord.data()?.email || null,
+            // name: userRecord.data()?.name || null,
+            // email: userRecord.data()?.email || null,
         }as User;
 
-    } catch (e: any) {
-        console.error('Error getting current user:', e);
+    } catch (e) {
+        console.log(e);
+        // console.error('Error getting current user:', e);
         return null;
     }
 }
