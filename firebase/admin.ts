@@ -3,7 +3,7 @@ import { getAuth } from "firebase-admin/auth";
 import { getFirestore } from "firebase-admin/firestore";
 
 // Initialize Firebase Admin SDK
-function initFirebaseAdmin() {
+const initFirebaseAdmin = () => {
   const apps = getApps();
 
   if (!apps.length) {
@@ -19,7 +19,7 @@ function initFirebaseAdmin() {
 
   return {
     auth: getAuth(),
-    db: getFirestore(),
+    db: getFirestore()
   };
 }
 
