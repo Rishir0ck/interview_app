@@ -9,7 +9,7 @@ import { redirect } from "next/navigation";
 import Image from "next/image";
 import dayjs from "dayjs";
 
-const page = async ({ params }: RouteParams) => {
+const Feedback = async ({ params }: RouteParams) => {
   const { id } = await params;
   const user = await getCuurentUser();
 
@@ -20,8 +20,6 @@ const page = async ({ params }: RouteParams) => {
     interviewId: id,
     userId: user?.id!,
   });
-
-  console.log(feedback);
 
   return (
     <section className="section-feedback">
@@ -117,4 +115,4 @@ const page = async ({ params }: RouteParams) => {
   );
 };
 
-export default page;
+export default Feedback;

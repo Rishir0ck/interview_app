@@ -1,17 +1,27 @@
 import { redirect } from "next/navigation";
-import { getInterviewsById } from "@/lib/actions/general.action";
+import {
+  getFeedbackByInterviewId,
+  getInterviewsById,
+} from "@/lib/actions/general.action";
 import Image from "next/image";
 import { getRandomInterviewCover } from "@/lib/utils";
 import DisplayTechIcons from "@/components/DisplayTechIcons";
 import Agent from "@/components/Agent";
 import { getCuurentUser } from "@/lib/actions/auth.action";
 
-const page = async ({ params }: RouteParams) => {
+const InterviewDetails = async ({ params }: RouteParams) => {
   const { id } = await params;
-  const user = await getCuurentUser();
-  const interview = await getInterviewsById(id);
 
+  const user = await getCuurentUser();
+
+  const interview = await getInterviewsById(id);
   if (!interview) redirect("/");
+
+  const feedback = await getFeedbackByInterviewId({
+    interviewId: id,
+    userId: user?.id!,
+  });
+
   return (
     <>
       <div className="flex flex-row gap-4 justify-between">
@@ -45,4 +55,4 @@ const page = async ({ params }: RouteParams) => {
   );
 };
 
-export default page;
+export default InterviewDetails;
