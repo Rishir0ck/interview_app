@@ -2,7 +2,7 @@ import { Button } from "@/components/ui/button";
 import { getCurrentUser } from "@/lib/actions/auth.action";
 import {
   getFeedbackByInterviewId,
-  getInterviewsById,
+  getInterviewById,
 } from "@/lib/actions/general.action";
 import Link from "next/link";
 import { redirect } from "next/navigation";
@@ -13,7 +13,7 @@ const Feedback = async ({ params }: RouteParams) => {
   const { id } = await params;
   const user = await getCurrentUser();
 
-  const interview = await getInterviewsById(id);
+  const interview = await getInterviewById(id);
   if (!interview) redirect("/");
 
   const feedback = await getFeedbackByInterviewId({
