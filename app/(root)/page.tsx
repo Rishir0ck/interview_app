@@ -1,3 +1,5 @@
+"use client";
+
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import Image from "next/image";
@@ -8,20 +10,31 @@ import {
   getInterviewsByUserId,
   getLatestInterviews,
 } from "@/lib/actions/general.action";
+import { signOut } from "next-auth/react";
 
-const page = async () => {
+const Home = async () => {
   const user = await getCurrentUser();
 
-  const [userInterviews, latestInterviews] = await Promise.all([
+  const [userInterviews, allInterview] = await Promise.all([
     await getInterviewsByUserId(user?.id!),
     await getLatestInterviews({ userId: user?.id! }),
   ]);
 
   const hasPastInterviews = userInterviews?.length! > 0;
-  const hasUpcomingInterviews = latestInterviews?.length! > 0;
+  const hasUpcomingInterviews = allInterview?.length! > 0;
+
+  const handleLogout = async () => {
+    await signOut({ callbackUrl: "/sign-in" });
+  };
 
   return (
     <>
+      <div className="flex justify-end p-4">
+        <Button onClick={handleLogout} className="btn-secondary">
+          Logout
+        </Button>
+      </div>
+
       <section className="card-cta">
         <div className="flex flex-col gap-6 max-w-lg">
           <h2>
@@ -43,7 +56,7 @@ const page = async () => {
           height={400}
           width={400}
           className="max-sm:hidden"
-        ></Image>
+        />
       </section>
 
       <section className="flex flex-col gap-6 mt-8">
@@ -51,7 +64,15 @@ const page = async () => {
         <div className="interviews-section">
           {hasPastInterviews ? (
             userInterviews?.map((interview) => (
-              <InterviewCard {...interview} key={interview.id} />
+              <InterviewCard
+                key={interview.id}
+                userId={user?.id}
+                interviewId={interview.id}
+                role={interview.role}
+                type={interview.type}
+                techstack={interview.techstack}
+                createdAt={interview.createdAt}
+              />
             ))
           ) : (
             <p>You haven't taken any interview yet</p>
@@ -61,10 +82,19 @@ const page = async () => {
 
       <section className="flex flex-col gap-6 mt-8">
         <h2>Initiate Interview Simulation</h2>
+
         <div className="interviews-section">
           {hasUpcomingInterviews ? (
-            latestInterviews?.map((interview) => (
-              <InterviewCard {...interview} key={interview.id} />
+            allInterview?.map((interview) => (
+              <InterviewCard
+                key={interview.id}
+                userId={user?.id}
+                interviewId={interview.id}
+                role={interview.role}
+                type={interview.type}
+                techstack={interview.techstack}
+                createdAt={interview.createdAt}
+              />
             ))
           ) : (
             <p>There are no new interview available</p>
@@ -75,4 +105,4 @@ const page = async () => {
   );
 };
 
-export default page;
+export default Home;
