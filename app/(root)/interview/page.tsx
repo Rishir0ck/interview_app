@@ -1,12 +1,14 @@
 import Agent from "@/components/Agent";
-import React from "react";
+import { getCuurentUser } from "@/lib/actions/auth.action";
 
-const page = () => {
+const page = async () => {
+  const user = await getCuurentUser();
+
   return (
     <>
       <h3>Interview Generation</h3>
 
-      <Agent userName="You" userId="user1" type="generate" />
+      <Agent userName={user?.name!} userId={user?.id} type="generate" />
     </>
   );
 };
