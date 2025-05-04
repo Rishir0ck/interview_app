@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button";
-import { getCuurentUser } from "@/lib/actions/auth.action";
+import { getCurrentUser } from "@/lib/actions/auth.action";
 import {
   getFeedbackByInterviewId,
   getInterviewsById,
@@ -11,7 +11,7 @@ import dayjs from "dayjs";
 
 const Feedback = async ({ params }: RouteParams) => {
   const { id } = await params;
-  const user = await getCuurentUser();
+  const user = await getCurrentUser();
 
   const interview = await getInterviewsById(id);
   if (!interview) redirect("/");
