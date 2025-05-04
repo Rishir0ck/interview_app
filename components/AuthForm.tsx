@@ -47,10 +47,10 @@ const AuthForm = ({ type }: { type: FormType }) => {
   });
 
   // 2. Define a submit handler.
-  async function onSubmit(values: z.infer<typeof formSchema>) {
+  async function onSubmit(data: z.infer<typeof formSchema>) {
     try {
       if (type === "sign-up") {
-        const { name, email, password } = values;
+        const { name, email, password } = data;
 
         const usercredentials = await createUserWithEmailAndPassword(
           auth,
@@ -73,7 +73,7 @@ const AuthForm = ({ type }: { type: FormType }) => {
         toast.success("Account created successfully! Please sign in.");
         router.push("/sign-in");
       } else {
-        const { email, password } = values;
+        const { email, password } = data;
 
         const usercredentials = await signInWithEmailAndPassword(
           auth,
