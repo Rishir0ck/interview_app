@@ -1,7 +1,7 @@
 import { redirect } from "next/navigation";
 import {
   getFeedbackByInterviewId,
-  getInterviewsById,
+  getInterviewById,
 } from "@/lib/actions/general.action";
 import Image from "next/image";
 import { getRandomInterviewCover } from "@/lib/utils";
@@ -14,7 +14,7 @@ const InterviewDetails = async ({ params }: RouteParams) => {
 
   const user = await getCurrentUser();
 
-  const interview = await getInterviewsById(id);
+  const interview = await getInterviewById(id);
   if (!interview) redirect("/");
 
   const feedback = await getFeedbackByInterviewId({
