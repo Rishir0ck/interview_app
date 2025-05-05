@@ -43,7 +43,7 @@ const Home = async () => {
           height={400}
           width={400}
           className="max-sm:hidden"
-        ></Image>
+        />
       </section>
 
       <section className="flex flex-col gap-6 mt-8">
@@ -62,7 +62,7 @@ const Home = async () => {
               />
             ))
           ) : (
-            <p>You haven't taken any interview yet</p>
+            <p>You haven&apos;t taken any interview yet</p>
           )}
         </div>
       </section>
