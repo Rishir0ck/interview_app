@@ -174,8 +174,8 @@ const Agent = ({
               className="rounded-full object-cover size-[120px]"
             />
             {isSpeaking && <span className="animate-speak" />}
+            <h3>{userName}</h3>
           </div>
-          <h3>{userName}</h3>
         </div>
       </div>
 
