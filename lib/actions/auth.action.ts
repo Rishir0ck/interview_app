@@ -131,3 +131,15 @@ export async function isAuthenticated() {
   const user = await getCurrentUser();
   return !!user;
 }
+
+
+
+
+
+
+// -------------------
+export const logout = async () => {
+  // Clear session or token
+  localStorage.removeItem("session"); // Example for token-based auth
+  // Or clear cookies, etc.
+};

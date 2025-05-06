@@ -3,7 +3,7 @@ import Link from "next/link";
 import Image from "next/image";
 import React from "react";
 import InterviewCard from "@/components/InterviewCard";
-import { getCurrentUser } from "@/lib/actions/auth.action";
+import { getCurrentUser, logout } from "@/lib/actions/auth.action";
 import {
   getInterviewsByUserId,
   getLatestInterviews,
@@ -20,8 +20,47 @@ const Home = async () => {
   const hasPastInterviews = userInterviews?.length! > 0;
   const hasUpcomingInterviews = allInterview?.length! > 0;
 
+  // --------------
+  const handleLogout = async () => {
+    await logout(); // Assuming `logout` clears the session or token
+    // Redirect user after logout
+    window.location.href = "/sign-in"; // Or use `router.push("/login")` for Next.js
+  };
+  // --------------
+
   return (
     <>
+      {/* ----------------- */}
+      {/* Header Section with User Profile */}
+      <header className="relative flex justify-between items-center p-6">
+        {/* <h1 className="text-2xl font-bold">Interview Dashboard</h1> */}
+
+        {/* User Profile Section */}
+        <div className="absolute top-6 right-6 flex items-center gap-4">
+          {user?.avatar ? (
+            <Image
+              src={user.avatar}
+              alt="User Avatar"
+              width={40}
+              height={40}
+              className="rounded-full"
+            />
+          ) : (
+            <div className="w-10 h-10 bg-gray-200 rounded-full flex items-center justify-center text-gray-500">
+              {user?.name?.[0]}
+            </div>
+          )}
+          <span>{user?.name}</span>
+          {/* Logout Button */}
+          <Button
+            onClick={handleLogout}
+            className="btn-logout text-sm text-red-500"
+          >
+            Logout
+          </Button>
+        </div>
+      </header>
+      {/* ----------------- */}
       <section className="card-cta">
         <div className="flex flex-col gap-6 max-w-lg">
           <h2>
