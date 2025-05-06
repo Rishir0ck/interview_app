@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Mona_Sans } from "next/font/google";
 import "./globals.css";
 import { Toaster } from "sonner";
+import Footer from "@/components/Footer";
 
 const monaSans = Mona_Sans({
   variable: "--font-mona-sans",
@@ -13,17 +14,34 @@ export const metadata: Metadata = {
   description: "An AI-Powered Interview Assistant",
 };
 
-export default function RootLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+// export default function RootLayout({
+//   children,
+// }: Readonly<{
+//   children: React.ReactNode;
+// }>) {
+//   return (
+//     <html lang="en" className="dark">
+//       <body className={`${monaSans.className} antialiased pattern`}>
+//         {children}
+//         <Toaster />
+//       </body>
+//     </html>
+//   );
+// }
+
+
+
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" className="dark">
-      <body className={`${monaSans.className} antialiased pattern`}>
+      <body className={`${monaSans.className} antialiased pattern`} >
         {children}
+        <Footer />
         <Toaster />
       </body>
     </html>
   );
 }
+
+
+
