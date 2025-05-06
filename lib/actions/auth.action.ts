@@ -138,8 +138,8 @@ export async function isAuthenticated() {
 
 
 // -------------------
-export const logout = async () => {
-  // Clear session or token
-  localStorage.removeItem("session"); // Example for token-based auth
-  // Or clear cookies, etc.
-};
+// export const logout = async () => {
+//   // Clear session or token
+//   localStorage.removeItem("session"); // Example for token-based auth
+//   // Or clear cookies, etc.
+// };
