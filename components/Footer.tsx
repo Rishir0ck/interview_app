@@ -27,7 +27,7 @@ const Footer = () => {
           aria-label="Visit Instagram"
         >
           <Instagram className="h-4 w-4 shrink-0" />
-          <span className="text-sm sm:text-base">@rishi_r0ck</span>
+          <span className="text-sm sm:text-base">rishi_r0ck</span>
         </a>
       </div>
     </footer>
