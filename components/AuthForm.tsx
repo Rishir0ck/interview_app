@@ -49,7 +49,7 @@ const AuthForm = ({ type }: { type: FormType }) => {
   // 2. Define a submit handler.
   async function onSubmit(data: z.infer<typeof formSchema>) {
     try {
-      if (type === "sign-up") {
+      if (type === "sign-up" || type === "GoogleAuthProvider") {
         const { name, email, password } = data;
 
         const usercredentials = await createUserWithEmailAndPassword(

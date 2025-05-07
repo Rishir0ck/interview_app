@@ -4,7 +4,7 @@ import { Mail, Instagram } from "lucide-react";
 const Footer = () => {
   return (
     <footer className="w-full flex justify-center mt-auto px-4 py-6 bg-transparent">
-      <div className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-6 w-full max-w-2xl px-4 py-4 rounded-xl shadow-lg border border-neutral-800 bg-neutral-900 text-sm text-neutral-300 text-center sm:text-left">
+      <div className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-6 w-full text-sm text-neutral-300 text-center sm:text-left">
         <a
           href="mailto:devstack.rishii@gmail.com"
           className="flex items-center gap-2 hover:text-blue-400 transition-colors"

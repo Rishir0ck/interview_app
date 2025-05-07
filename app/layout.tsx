@@ -41,9 +41,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <LoadingProvider>
        <GlobalLoadingOverlay />
         {children}
-        <Footer />
-        <Toaster />
-        </LoadingProvider>
+          <Footer />
+          <Toaster />
+      </LoadingProvider>
       </body>
     </html>
   );

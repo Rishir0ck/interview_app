@@ -1,7 +1,12 @@
 import AuthForm from "@/components/AuthForm";
+// import GoogleSignInButton from "@/components/auth/GoogleSignInButton";
 
 const page = () => {
-  return <AuthForm type="sign-up" />;
-};
+  return (
+  <div>
+  <AuthForm type="sign-up" />
+  {/* <GoogleSignInButton /> */}
+  </div>
+)};
 
 export default page;

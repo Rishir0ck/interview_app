@@ -84,7 +84,7 @@ interface SignUpParams {
   password: string;
 }
 
-type FormType = "sign-in" | "sign-up";
+type FormType = "sign-in" | "sign-up" | "GoogleAuthProvider";
 
 interface InterviewFormProps {
   interviewId: string;
