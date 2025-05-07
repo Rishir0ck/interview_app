@@ -6,6 +6,7 @@ import { redirect } from "next/navigation";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
 import { Button } from "@/components/ui/button";
 import LogoutButton from "@/components/LogoutButton";
+import RouteLoader from "@/components/shared/RouteLoader";
 
 
 
@@ -46,15 +47,11 @@ const RootLayout = async ({ children }: { children: ReactNode }) => {
             </DropdownMenuTrigger>
             <DropdownMenuContent align="end" className="mt-2 w-48">
               <DropdownMenuItem>
-             
-              <LogoutButton />
-
-
-
+                <LogoutButton />
               </DropdownMenuItem>
             </DropdownMenuContent>
           </DropdownMenu>
-
+        <RouteLoader />
       </nav>
       {children}
     </div>
